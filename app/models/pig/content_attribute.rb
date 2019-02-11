@@ -94,7 +94,10 @@ module Pig
 
     def resource_collection
       # ContentPackage collection for atrributes of type resource
-      resource_content_type.nil? ? Pig::ContentPackage.published : Pig::ContentPackage.where(content_type: resource_content_type).published
+      scope = Pig::ContentPackage.unscoped.published.order(:name).where(archived_at: nil)
+      scope = scope.where(content_type: resource_content_type) if resource_content_type.present?
+
+      scope
     end
 
     def limitable?
