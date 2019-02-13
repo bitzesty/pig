@@ -14,13 +14,19 @@ module Pig
       end
       content_package.define_singleton_method("#{@slug}_content_package") do
         if this.content_value(self).present?
-          Pig::ContentPackage.find(this.content_value(self))
+          Pig::ContentPackage.find_by_id(this.content_value(self))
         end
       end
       content_package.define_singleton_method("#{@slug}_path") do
         if this.content_value(self).present?
-          cp_path = self.send("#{this.slug}_content_package").to_param
-          "/#{cp_path}".squeeze "/"
+          package = self.send("#{this.slug}_content_package")
+
+          if package
+            cp_path = self.send("#{this.slug}_content_package").to_param
+            "/#{cp_path}".squeeze "/"
+          else
+            "#"
+          end
         end
       end
     end
