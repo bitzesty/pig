@@ -31,6 +31,8 @@ Pig::Engine.routes.draw do
     end
 
     namespace :manage do
+      resource :app_settings, only: [:show, :update], as: :settings
+
       resources :users do
         member do
           post :set_active

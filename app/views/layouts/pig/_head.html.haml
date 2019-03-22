@@ -7,3 +7,6 @@
 - Pig::configuration.additional_stylesheets.each do |stylesheet|
   =stylesheet_link_tag stylesheet
 =stylesheet_link_tag("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css", media: 'all')
+
+%script
+  = Pig::AppSettings.first_or_create.google_optimize.html_safe

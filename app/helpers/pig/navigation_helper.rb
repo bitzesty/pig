@@ -45,6 +45,13 @@ module Pig
         icon: 'user'
       }
       nav_items << {
+        visible: proc { can? :manage, Pig::AppSettings },
+        is_active: proc { @app_settings },
+        url: pig.admin_manage_settings_path,
+        title: 'CMS Settings',
+        icon: 'gear'
+      }
+      nav_items << {
         visible: proc { can? :manage, Pig::Persona },
         is_active: proc { @persona || @persona },
         url: pig.admin_personas_path,
