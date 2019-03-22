@@ -9,4 +9,4 @@
 =stylesheet_link_tag("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css", media: 'all')
 
 %script
-  = Pig::AppSettings.first_or_create.google_optimize.html_safe
+  = Pig::AppSettings.first_or_create.google_optimize.to_s.html_safe
