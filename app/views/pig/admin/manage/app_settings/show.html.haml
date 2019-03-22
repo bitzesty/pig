@@ -1,0 +1,11 @@
+.container.cms-main
+  .col-md-8.col-md-offset-2
+    .cms-page-header
+      %h1.mb-2.center Edit CMS Settings
+    .form-container
+      = semantic_form_for(@settings, url: [pig, :admin, :manage, :settings]) do |f|
+        = f.inputs do
+          = f.input :google_optimize, as: :text
+
+        = f.actions do
+          = f.action :submit, label: "Save", button_html: { class: 'btn btn-success pull-right' }
