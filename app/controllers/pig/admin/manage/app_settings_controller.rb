@@ -1,10 +1,9 @@
-class Pig::Admin::AppSettingsController < Pig::Admin::ApplicationController
+class Pig::Admin::Manage::AppSettingsController < Pig::Admin::ApplicationController
   respond_to :html
   authorize_resource class: 'Pig::AppSettings'
 
   def show
     @settings = Pig::AppSettings.first_or_create
-    render "pig/admin/manage/app_settings/show"
   end
 
   def update
