@@ -1,10 +1,10 @@
 Given /^I am logged in as an (.*)$/ do |role|
-  user = FactoryGirl.create(:user, role.to_sym)
+  user = FactoryBot.create(:user, role.to_sym)
   stub_user(user)
 end
 
 Given /^I am logged in as any user$/ do
-  user = FactoryGirl.create(:user, :author)
+  user = FactoryBot.create(:user, :author)
   stub_user(user)
 end
 
@@ -27,9 +27,9 @@ Given(/^there (?:are|is) (\d+)( unconfirmed)? user(?:s)?$/) do |n, unconfirmed|
   @users = [].tap do |arr|
     n.to_i.times do
       if unconfirmed
-        arr << FactoryGirl.create(:user, :unconfirmed, role: 'author')
+        arr << FactoryBot.create(:user, :unconfirmed, role: 'author')
       else
-        arr << FactoryGirl.create(:user, role: 'author')
+        arr << FactoryBot.create(:user, role: 'author')
       end
     end
   end
@@ -38,7 +38,7 @@ end
 
 When(/^I fill in the new cms user form and submit$/) do
   visit pig.new_admin_manage_user_path
-  @user = FactoryGirl.build(:user, role: 'author')
+  @user = FactoryBot.build(:user, role: 'author')
   fill_in "user_first_name", :with => @user.first_name
   fill_in "user_last_name", :with => @user.last_name
   fill_in "user_email", :with => @user.email
@@ -133,7 +133,7 @@ When(/^I log out$/) do
 end
 
 Given(/^I have received an email to confirm my account$/) do
-  @user = FactoryGirl.create(:user)
+  @user = FactoryBot.create(:user)
   @user.send_confirmation_instructions
 end
 

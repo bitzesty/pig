@@ -2,9 +2,9 @@ require 'rails_helper'
 
 module Pig
   RSpec.describe 'pig/admin/manage/users/show', type: :view do
-    let(:user) { FactoryGirl.create(:user, :author, first_name: "Jimmy",
+    let(:user) { FactoryBot.create(:user, :author, first_name: "Jimmy",
                                                     last_name: "Foo") }
-    let(:content_package) { FactoryGirl.create(:content_package, author: user) }
+    let(:content_package) { FactoryBot.create(:content_package, author: user) }
 
     before(:each) do
       assign(:user, user)

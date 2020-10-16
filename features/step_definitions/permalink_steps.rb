@@ -1,11 +1,11 @@
 Given(/^the content package has an old permalink alias$/) do
- @permalink_alias = FactoryGirl.create(:permalink,
+ @permalink_alias = FactoryBot.create(:permalink,
                                        resource: @content_package,
                                        created_at: 1.week.ago)
 end
 
 Given(/^the content package has a new permalink alias$/) do
- @permalink_alias = FactoryGirl.create(:permalink,
+ @permalink_alias = FactoryBot.create(:permalink,
                                        resource: @content_package)
 end
 

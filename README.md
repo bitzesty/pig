@@ -30,15 +30,15 @@ To use the pig factories in the specs of your project add the following to your 
 
 ```ruby
 config.before(:suite) do
-  FactoryGirl.reset_configuration
-  FactoryGirl.register_default_strategies
-  FactoryGirl.register_default_callbacks
-  FactoryGirl.definition_file_paths << Pig.factory_path
-	FactoryGirl.find_definitions
+  FactoryBot.reset_configuration
+  FactoryBot.register_default_strategies
+  FactoryBot.register_default_callbacks
+  FactoryBot.definition_file_paths << Pig.factory_path
+	FactoryBot.find_definitions
 end
 ```
 
-Note: the config above has been tested with `factory_girl`, not `factory_girl_rails`.
+Note: the config above has been tested with `factory_bot`, not `factory_bot_rails`.
 
 ### Google Analytics
 

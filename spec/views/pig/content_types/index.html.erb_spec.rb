@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'pig/admin/content_types/index', type: :view do
-  let(:admin) { FactoryGirl.create(:user, :admin) }
-  let(:content_type_1) { FactoryGirl.create(:content_type, name: 'Foo') }
-  let(:content_type_2) { FactoryGirl.create(:content_type, name: 'Bar') }
+  let(:admin) { FactoryBot.create(:user, :admin) }
+  let(:content_type_1) { FactoryBot.create(:content_type, name: 'Foo') }
+  let(:content_type_2) { FactoryBot.create(:content_type, name: 'Bar') }
 
   before(:each) do
     assign(:content_types, [

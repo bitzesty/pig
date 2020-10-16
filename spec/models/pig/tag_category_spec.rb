@@ -11,7 +11,7 @@ module Pig
     it { should validate_uniqueness_of(:slug) }
 
     it 'has a valid factory' do
-      expect(FactoryGirl.create(:tag_category)).to be_valid
+      expect(FactoryBot.create(:tag_category)).to be_valid
     end
 
     describe 'slugs' do
@@ -32,8 +32,8 @@ module Pig
     end
 
     describe '#tag_count_for' do
-      subject { FactoryGirl.create(:tag_category) }
-      let(:tag) { FactoryGirl.create(:tag) }
+      subject { FactoryBot.create(:tag_category) }
+      let(:tag) { FactoryBot.create(:tag) }
 
       before(:each) { subject.taxonomy_list << tag }
 
@@ -45,7 +45,7 @@ module Pig
 
       context 'tag which is used once by this tag category' do
         it 'returns 1' do
-          content_package = FactoryGirl.create(:content_package)
+          content_package = FactoryBot.create(:content_package)
           content_package.update(taxonomy_tags: { subject.slug => [tag.name] })
           expect(subject.tag_count_for(tag)).to eq(1)
         end
@@ -54,7 +54,7 @@ module Pig
       context 'tag which is used twice by this tag category' do
         it 'returns 10' do
           10.times do
-            content_package = FactoryGirl.create(:content_package)
+            content_package = FactoryBot.create(:content_package)
             content_package.update(taxonomy_tags: { subject.slug => [tag.name] })
           end
           expect(subject.tag_count_for(tag)).to eq(10)

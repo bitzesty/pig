@@ -12,7 +12,7 @@ require 'cucumber/rails'
 require 'capybara/poltergeist'
 require 'capybara/email'
 
-require 'factory_girl_rails'
+require 'factory_bot_rails'
 require File.expand_path(File.dirname(__FILE__) + '/../../spec/factories/factories')
 
 require 'cucumber/rspec/doubles'

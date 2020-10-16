@@ -14,7 +14,7 @@ module Pig
       end
 
       it "routes to #show" do
-        cp = FactoryGirl.create(:content_package)
+        cp = FactoryBot.create(:content_package)
         expect(:get => cp.permalink.full_path).to route_to("pig/front/content_packages#show", :path => cp.permalink.full_path.gsub(/^\//, ''))
       end
 

@@ -7,7 +7,7 @@ module Pig
 
     describe 'GET #show' do
       it 'assigns the requested content_package as @content_package' do
-        content_package = FactoryGirl.create(:content_package)
+        content_package = FactoryBot.create(:content_package)
         time = Benchmark.realtime do
           2.times do
             get :show, { path: content_package.to_param }, {}

@@ -3,7 +3,7 @@ require 'rails_helper'
 module Pig
   RSpec.describe ContentAttribute do
     let(:content_attribute) do
-      FactoryGirl.build(:content_attribute, slug: 'banana', name: 'Banana')
+      FactoryBot.build(:content_attribute, slug: 'banana', name: 'Banana')
     end
 
     it { should validate_presence_of(:slug) }

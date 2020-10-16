@@ -8,7 +8,7 @@ module Pig
     # ContentType. As you add validations to ContentType, be sure to
     # adjust the attributes here as well.
     let(:valid_attributes) {
-      FactoryGirl.attributes_for(:content_type)
+      FactoryBot.attributes_for(:content_type)
     }
 
     let(:invalid_attributes) {

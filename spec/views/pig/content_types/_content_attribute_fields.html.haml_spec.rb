@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "pig/admin/content_types/_content_attribute_fields", type: :view do
   before(:each) do
-    content_type = FactoryGirl.build(:content_type)
+    content_type = FactoryBot.build(:content_type)
     assign(:content_type, content_type)
     form_builder = FormtasticBootstrap::FormBuilder.new('content_type[content_attributes_attributes]', content_type.content_attributes.first, view, {index: 0})
     render partial: 'pig/admin/content_types/content_attribute_fields', locals: { f: form_builder }

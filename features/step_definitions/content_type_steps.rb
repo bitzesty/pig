@@ -4,7 +4,7 @@ Given(/^there (is|are) (\d+) content types?$/) do |ia,n|
   end
   @content_types = [].tap do |arr|
     n.to_i.times do
-      arr << FactoryGirl.create(:content_type)
+      arr << FactoryBot.create(:content_type)
     end
   end
   @content_type = @content_types.first
@@ -22,7 +22,7 @@ end
 
 When(/^I fill in the new content type form and submit$/) do
   visit pig.new_admin_content_type_path
-  @content_type = FactoryGirl.build(:content_type)
+  @content_type = FactoryBot.build(:content_type)
   fill_in('content_type_name', :with => @content_type.name)
   @content_type.content_attributes.each_with_index do |content_attribute, idx|
     click_link('Add another content attribute') unless idx.zero?

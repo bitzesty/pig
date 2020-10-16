@@ -5,7 +5,7 @@ module Pig
     routes { Pig::Engine.routes }
 
     let(:content_package) do
-      FactoryGirl.create(:content_package)
+      FactoryBot.create(:content_package)
     end
 
     let(:valid_attributes) do

@@ -4,7 +4,7 @@ Given(/^there (is|are) (\d+) persona groups?$/) do |ia,n|
   end
   @persona_groups = [].tap do |arr|
     n.to_i.times do
-      arr << FactoryGirl.create(:persona_group)
+      arr << FactoryBot.create(:persona_group)
     end
   end
   @persona_group = @persona_groups.first

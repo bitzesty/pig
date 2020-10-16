@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "pig/admin/content_types/_form", type: :view do
-  let(:content_type) { FactoryGirl.create(:content_type) }
-  let(:tag_categories) { [FactoryGirl.create(:tag_category), FactoryGirl.create(:tag_category)] }
+  let(:content_type) { FactoryBot.create(:content_type) }
+  let(:tag_categories) { [FactoryBot.create(:tag_category), FactoryBot.create(:tag_category)] }
 
   before(:each) do
     assign(:content_type, content_type)
@@ -11,7 +11,7 @@ RSpec.describe "pig/admin/content_types/_form", type: :view do
 
   context 'as an admin' do
     before(:each) do
-      ability = Pig::Ability.new(FactoryGirl.create(:user, :admin))
+      ability = Pig::Ability.new(FactoryBot.create(:user, :admin))
       allow(controller).to receive(:current_ability).and_return(ability)
       render
     end
@@ -49,7 +49,7 @@ RSpec.describe "pig/admin/content_types/_form", type: :view do
 
   context 'as a developer' do
     before(:each) do
-      ability = Pig::Ability.new(FactoryGirl.create(:user, :developer))
+      ability = Pig::Ability.new(FactoryBot.create(:user, :developer))
       allow(controller).to receive(:current_ability).and_return(ability)
       render
     end

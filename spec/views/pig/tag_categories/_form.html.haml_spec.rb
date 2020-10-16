@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "pig/admin/tag_categories/_form", type: :view do
-  let(:tag_category) { FactoryGirl.create(:tag_category) }
+  let(:tag_category) { FactoryBot.create(:tag_category) }
 
   before(:each) do
     assign(:tag_category, tag_category)

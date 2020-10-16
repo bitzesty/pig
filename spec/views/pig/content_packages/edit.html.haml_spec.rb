@@ -2,7 +2,7 @@ require 'rails_helper'
 
 module Pig
   RSpec.describe 'pig/admin/content_packages/edit', type: :view do
-    let(:admin) { FactoryGirl.create(:user, :admin, last_name: 'A', first_name: 'A') }
+    let(:admin) { FactoryBot.create(:user, :admin, last_name: 'A', first_name: 'A') }
 
     before(:each) do
       assign(:non_meta_content_attributes, [])
@@ -10,7 +10,7 @@ module Pig
       assign(:activity_items, instance_double('ActivityItems',
                                               total_pages: 0,
                                               current_page: 1))
-      assign(:content_package, FactoryGirl.create(:content_package,
+      assign(:content_package, FactoryBot.create(:content_package,
                                                   author: admin,
                                                   requested_by: admin,
                                                   editing_user: admin))
@@ -20,8 +20,8 @@ module Pig
     end
 
     it 'should order assigned to by surname, regardless of role' do
-      FactoryGirl.create(:user, :admin, last_name: 'C', first_name: 'C')
-      FactoryGirl.create(:user, :author, last_name: 'B', first_name: 'B')
+      FactoryBot.create(:user, :admin, last_name: 'C', first_name: 'C')
+      FactoryBot.create(:user, :author, last_name: 'B', first_name: 'B')
       render
       assigned_to_options = Nokogiri::HTML(rendered)
         .xpath("//select[@id='content_package_author_id']").text
@@ -29,8 +29,8 @@ module Pig
     end
 
     it 'should order requested_by by surname' do
-      FactoryGirl.create(:user, :admin, last_name: 'C', first_name: 'C')
-      FactoryGirl.create(:user, :admin, last_name: 'B', first_name: 'B')
+      FactoryBot.create(:user, :admin, last_name: 'C', first_name: 'C')
+      FactoryBot.create(:user, :admin, last_name: 'B', first_name: 'B')
       render
       assigned_to_options = Nokogiri::HTML(rendered)
         .xpath("//select[@id='content_package_requested_by_id']")
@@ -39,7 +39,7 @@ module Pig
     end
 
     context 'signed in as a developer' do
-      let(:developer) { FactoryGirl.create(:user, :developer) }
+      let(:developer) { FactoryBot.create(:user, :developer) }
 
       before(:each) do
         @ability = Ability.new(developer)

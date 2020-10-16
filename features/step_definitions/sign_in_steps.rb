@@ -24,7 +24,7 @@ Given(/^an author exists with email "(.*?)"(?: and password "(.*?)")?$/) do |ema
   params = {}
   @email = params[:email] = email if email.present?
   @password = params[:password] = password if password.present?
-  FactoryGirl.create(:user, :author, params)
+  FactoryBot.create(:user, :author, params)
 end
 
 When(/^I click the forgotten password link$/) do

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'pig/admin/manage/users/_form', type: :view do
-  let(:user) { FactoryGirl.create(:user, :author) }
+  let(:user) { FactoryBot.create(:user, :author) }
   before(:each) do
     assign(:user, user)
     allow(view).to receive(:current_user).and_return(user)

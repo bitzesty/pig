@@ -9,7 +9,7 @@ module Pig
       login_admin
 
       describe "PATCH #update" do
-        let(:user) { FactoryGirl.create(:user) }
+        let(:user) { FactoryBot.create(:user) }
         it "redirects to user" do
           patch :update, id: user.id, user: { bio: 'Hi my name is test' }
           expect(response).to redirect_to(admin_manage_user_path(user))
@@ -35,7 +35,7 @@ module Pig
       end
 
       describe "PATCH #confirm" do
-        let(:user) { FactoryGirl.create(:user) }
+        let(:user) { FactoryBot.create(:user) }
         it "confirms the user" do
           xhr :patch, :confirm, id: user.id
           expect(user.confirmed?).to be_truthy
@@ -43,7 +43,7 @@ module Pig
       end
 
       describe "GET #show" do
-        let(:user) { FactoryGirl.create(:user) }
+        let(:user) { FactoryBot.create(:user) }
         it "shows the user" do
           get :show, id: user.id
           expect(response).to be_success

@@ -4,7 +4,7 @@ Given(/^there (is|are) (\d+) personas?$/) do |ia,n|
   end
   @personas = [].tap do |arr|
     n.to_i.times do
-      arr << FactoryGirl.create(:persona)
+      arr << FactoryBot.create(:persona)
     end
   end
   @persona = @personas.first
@@ -22,7 +22,7 @@ end
 
 When(/^I fill in the new persona form and submit$/) do
   visit pig.new_admin_persona_path
-  @persona = FactoryGirl.build(:persona)
+  @persona = FactoryBot.build(:persona)
   select(@persona_group.to_s, from: 'Group')
   fill_in('persona_name', :with => @persona.name)
   fill_in('persona_category', :with => @persona.category)
@@ -60,7 +60,7 @@ end
 Given(/^there is (\d+) content package using this persona$/) do |count|
   @content_packages = []
   count.to_i.times do
-    @content_packages << FactoryGirl.create(:content_package, personas: [@persona], author: @current_user)
+    @content_packages << FactoryBot.create(:content_package, personas: [@persona], author: @current_user)
   end
   @content_package = @content_packages.first
 end

@@ -4,7 +4,7 @@ module Pig
   RSpec.describe ContentPackage do
 
     let(:content_package) do
-      FactoryGirl.create(:content_package,
+      FactoryBot.create(:content_package,
                           status: 'draft',
                           name: 'Test name')
     end

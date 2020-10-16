@@ -3,7 +3,7 @@ require 'rails_helper'
 module Pig
   RSpec.describe ContentType do
 
-    let (:content_type) { FactoryGirl.build(:content_type) }
+    let (:content_type) { FactoryBot.build(:content_type) }
     it { should validate_presence_of(:name) }
     it { should validate_uniqueness_of(:name) }
 
@@ -18,7 +18,7 @@ module Pig
 
     it 'cannot be destroyed if has content packages' do
       content_type.save
-      content_type.content_packages << FactoryGirl.create(:content_package, :content_type => content_type)
+      content_type.content_packages << FactoryBot.create(:content_package, :content_type => content_type)
       expect(content_type.destroy).to be_falsey
     end
 

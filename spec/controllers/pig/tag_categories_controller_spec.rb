@@ -6,7 +6,7 @@ module Pig
     render_views
 
     let(:valid_attributes) do
-      FactoryGirl.attributes_for(:tag_category)
+      FactoryBot.attributes_for(:tag_category)
     end
 
     let(:invalid_attributes) do
@@ -21,13 +21,13 @@ module Pig
     requests = %w(index new edit update create)
     let(:index) { get :index }
     let(:new) { get :new }
-    let(:edit) { get :edit, id: FactoryGirl.create(:tag_category).id }
+    let(:edit) { get :edit, id: FactoryBot.create(:tag_category).id }
     let(:update) {
       patch :update,
-            id: FactoryGirl.create(:tag_category).id,
-            tag_category: FactoryGirl.attributes_for(:tag_category)
+            id: FactoryBot.create(:tag_category).id,
+            tag_category: FactoryBot.attributes_for(:tag_category)
     }
-    let(:create) { post :create, tag_category: FactoryGirl.attributes_for(:tag_category) }
+    let(:create) { post :create, tag_category: FactoryBot.attributes_for(:tag_category) }
 
     context 'not signed in' do
       requests.each do |request|

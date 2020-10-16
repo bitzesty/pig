@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "pig/admin/content_types/new", type: :view do
-  let(:admin) { FactoryGirl.create(:user, :admin) }
+  let(:admin) { FactoryBot.create(:user, :admin) }
 
   before(:each) do
     assign(:content_type, Pig::ContentType.new())

@@ -10,8 +10,8 @@ module Pig
     it { should validate_presence_of :user }
     
     describe 'default scope' do
-      let!(:content_package_1) { FactoryGirl.create(:content_package) }
-      let!(:content_package_2) { FactoryGirl.create(:content_package) }
+      let!(:content_package_1) { FactoryBot.create(:content_package) }
+      let!(:content_package_2) { FactoryBot.create(:content_package) }
 
       it 'orders by created_at descending' do
         expect(ActivityItem.all).to eq [content_package_2.activity_items.first, content_package_1.activity_items.first]

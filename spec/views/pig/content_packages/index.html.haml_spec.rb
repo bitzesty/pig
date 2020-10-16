@@ -1,9 +1,9 @@
 # require 'rails_helper'
 #
 # RSpec.describe 'pig/content_packages/index', type: :view do
-#   let(:admin) { FactoryGirl.create(:user, :admin) }
-#   let(:content_package_1) { FactoryGirl.create(:content_package, name: 'Foo') }
-#   let(:content_package_2) { FactoryGirl.create(:content_package, name: 'Bar') }
+#   let(:admin) { FactoryBot.create(:user, :admin) }
+#   let(:content_package_1) { FactoryBot.create(:content_package, name: 'Foo') }
+#   let(:content_package_2) { FactoryBot.create(:content_package, name: 'Bar') }
 #
 #   before(:each) do
 #     assign(:content_packages, [

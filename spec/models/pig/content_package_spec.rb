@@ -3,7 +3,7 @@ require 'rails_helper'
 module Pig
   RSpec.describe ContentPackage do
     let(:content_package) do
-      FactoryGirl.build(:content_package)
+      FactoryBot.build(:content_package)
     end
     it { should delegate_method(:viewless?).to(:content_type) }
     it { should delegate_method(:package_name).to(:content_type) }
@@ -145,12 +145,12 @@ module Pig
         expect(content_package.resource).to eq('')
       end
       it 'can return the path to the related content package' do
-        cp = FactoryGirl.create(:content_package, :permalink_path => "test")
+        cp = FactoryBot.create(:content_package, :permalink_path => "test")
         content_package.resource = cp.id
         expect(content_package.resource_path).to eq("/#{cp.to_param}")
       end
       it 'can return the related content package' do
-        cp = FactoryGirl.create(:content_package)
+        cp = FactoryBot.create(:content_package)
         content_package.resource = cp.id
         expect(content_package.resource_content_package).to eq(cp)
       end
@@ -274,7 +274,7 @@ module Pig
     describe 'Having the correct URL' do
 
       it 'has a permalink if not viewless' do
-        cp = FactoryGirl.create(:content_package, permalink_path: nil)
+        cp = FactoryBot.create(:content_package, permalink_path: nil)
         expect(content_package.permalink_path).not_to be_blank
       end
 
@@ -289,7 +289,7 @@ module Pig
       it 'cant have a duplicate permalink' do
         content_package.permalink_path = "test"
         content_package.save
-        cp = FactoryGirl.build(:content_package, :permalink_path => "test")
+        cp = FactoryBot.build(:content_package, :permalink_path => "test")
         expect(cp).to_not be_valid
       end
 
@@ -297,11 +297,11 @@ module Pig
         content_package.save
 
         # level 1
-        cp_v = FactoryGirl.create(:content_package, :parent => content_package, permalink_path: 'first')
+        cp_v = FactoryBot.create(:content_package, :parent => content_package, permalink_path: 'first')
         # level 2
-        cp_v_v = FactoryGirl.create(:content_package, :parent => cp_v)
+        cp_v_v = FactoryBot.create(:content_package, :parent => cp_v)
         # level 3
-        cp_v_v_v = FactoryGirl.create(:content_package, :parent => cp_v_v)
+        cp_v_v_v = FactoryBot.create(:content_package, :parent => cp_v_v)
         cps = [content_package, cp_v, cp_v_v, cp_v_v_v]
 
         original_paths = []
@@ -338,7 +338,7 @@ module Pig
       it 'has its children archived too' do
         content_package.slug = nil
         content_package.save
-        content_package.children << FactoryGirl.create(:content_package, :parent => content_package, :slug => nil)
+        content_package.children << FactoryBot.create(:content_package, :parent => content_package, :slug => nil)
         content_package.archive
         content_package.reload
         expect(content_package.children.all?(&:archived?)).to be_truthy
@@ -352,7 +352,7 @@ module Pig
       it 'cannot be archived if it has a child with a slug' do
         content_package.slug = nil
         content_package.save
-        content_package.children << FactoryGirl.build(:content_package, :parent => content_package)
+        content_package.children << FactoryBot.build(:content_package, :parent => content_package)
         content_package.archive
         expect(content_package.archived?).to be_falsey
       end
@@ -362,10 +362,10 @@ module Pig
   end
 
   describe '.with_content_type_name' do
-    let(:ct_1) { FactoryGirl.create(:content_type, name: 'foo') }
-    let(:ct_2) { FactoryGirl.create(:content_type, name: 'bar') }
-    let!(:cp_1) { FactoryGirl.create(:content_package, content_type: ct_1) }
-    let!(:cp_2) { FactoryGirl.create(:content_package, content_type: ct_2) }
+    let(:ct_1) { FactoryBot.create(:content_type, name: 'foo') }
+    let(:ct_2) { FactoryBot.create(:content_type, name: 'bar') }
+    let!(:cp_1) { FactoryBot.create(:content_package, content_type: ct_1) }
+    let!(:cp_2) { FactoryBot.create(:content_package, content_type: ct_2) }
     it 'returns only content packages using a type with this name' do
       expect(ContentPackage.with_content_type_name('foo')).to eq([cp_1])
     end

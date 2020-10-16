@@ -15,41 +15,41 @@ Given(/^there (?:is|are) (\d+)\s?(draft|published)?( unpublished)?( archived)? c
       attrs[:status] = status if status.present?
       attrs[:content_type] = @content_type if using_type
       attrs[:archived_at] = DateTime.now if archived
-      attrs[:editing_user] = @current_user || FactoryGirl.create(:user)
-      arr << FactoryGirl.create(:content_package, attrs)
+      attrs[:editing_user] = @current_user || FactoryBot.create(:user)
+      arr << FactoryBot.create(:content_package, attrs)
     end
   end
-  @admin = FactoryGirl.create(:user, :admin)
-  @author = FactoryGirl.create(:user, :author)
+  @admin = FactoryBot.create(:user, :admin)
+  @author = FactoryBot.create(:user, :author)
   @content_package = @content_packages.first
 end
 
 Given(/^there is 1 nested content package$/) do
-  @content_package = FactoryGirl.create(:nested_content_package)
+  @content_package = FactoryBot.create(:nested_content_package)
 end
 
 Given(/^there is (\d+) content package with comments$/) do |arg1|
-  @content_package = FactoryGirl.create(:content_package_with_comments)
+  @content_package = FactoryBot.create(:content_package_with_comments)
 end
 
 Given(/^there is a content package with a parent$/) do
-  @parent_content_package = FactoryGirl.create(:content_package)
-  @content_package = FactoryGirl.create(:content_package, :parent_id => @parent_content_package.id)
+  @parent_content_package = FactoryBot.create(:content_package)
+  @content_package = FactoryBot.create(:content_package, :parent_id => @parent_content_package.id)
 end
 
 Given(/^there is a content package with (\d+) children$/) do |children_count|
-  @content_package = FactoryGirl.create(:content_package)
+  @content_package = FactoryBot.create(:content_package)
   children_count.to_i.times do
-    FactoryGirl.create(:content_package, parent_id: @content_package.id)
+    FactoryBot.create(:content_package, parent_id: @content_package.id)
   end
 end
 
 Given(/^(?:there is|I create) a content package with the permalink path "(.*?)"$/) do |permalink|
-  FactoryGirl.create(:content_package, :permalink_path => permalink)
+  FactoryBot.create(:content_package, :permalink_path => permalink)
 end
 
 Given(/^there is a content package with an inactive permalink$/) do
-  @content_package = FactoryGirl.create(:content_package)
+  @content_package = FactoryBot.create(:content_package)
   @inactive_permalink = @content_package.permalinks.create(path: 'test-inactive-permalink', active: false, full_path: '/test-inactive-permalink')
 end
 
@@ -58,7 +58,7 @@ When(/^I go to the sitemap$/) do
 end
 
 When(/^it changes parent$/) do
-  parent_content_package = FactoryGirl.create(:content_package)
+  parent_content_package = FactoryBot.create(:content_package)
   @inactive_permalink = @content_package.permalink
   @content_package.update_attributes(:parent_id => parent_content_package.id)
 end
@@ -83,7 +83,7 @@ end
 
 When(/^I fill in the new content package form and submit$/) do
   visit pig.new_admin_content_type_content_package_path(@content_type)
-  @content_package = FactoryGirl.build(:content_package, :content_type => @content_type, :author => @current_user)
+  @content_package = FactoryBot.build(:content_package, :content_type => @content_type, :author => @current_user)
   select(@content_type)
   fill_in('Name', :with => @content_package.name)
   fill_in('Review date', :with => Date.today + 6.months)
@@ -366,7 +366,7 @@ end
 
 When(/^I fill in the new child content package form and submit$/) do
   content_type = Pig::ContentType.first
-  content_package = FactoryGirl.build(:content_package, :content_type => content_type, :author => @admin)
+  content_package = FactoryBot.build(:content_package, :content_type => content_type, :author => @admin)
   find('#content_package_content_type_input .custom-combobox-toggle').click
   find('li.ui-menu-item', text: content_type.name).click
   fill_in('Name', :with => content_package.name)

@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'pig/admin/tag_categories/index', type: :view do
-  let(:tag_category_1) { FactoryGirl.create(:tag_category, name: 'Foo') }
-  let(:tag_category_2) { FactoryGirl.create(:tag_category, name: 'Bar') }
+  let(:tag_category_1) { FactoryBot.create(:tag_category, name: 'Foo') }
+  let(:tag_category_2) { FactoryBot.create(:tag_category, name: 'Bar') }
 
   before(:each) do
     assign(:tag_categories, [

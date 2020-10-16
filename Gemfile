@@ -14,7 +14,7 @@ group :development, :test do
   gem 'guard'
   gem "guard-rspec", require: false
   gem "guard-cucumber", require: false
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'rspec-rails'
   gem 'shoulda-matchers', require: false
   gem 'pry'

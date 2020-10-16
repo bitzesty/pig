@@ -3,7 +3,7 @@ When(/^I go to the new meta data page$/) do
 end
 
 When(/^I fill in the meta data form$/) do
-  @meta_data = FactoryGirl.build(:meta_data)
+  @meta_data = FactoryBot.build(:meta_data)
   fill_in 'meta_datum_page_slug', with: @meta_data.page_slug
   fill_in 'meta_datum_title', with: @meta_data.title
   fill_in 'meta_datum_description', with: @meta_data.description
@@ -19,7 +19,7 @@ Then(/^the meta data should be created$/) do
 end
 
 Given(/^that there (?:is|are) (\d+) meta data pages?$/) do |x|
-  @meta_datas = FactoryGirl.create_list(:meta_data, x.to_i)
+  @meta_datas = FactoryBot.create_list(:meta_data, x.to_i)
   @meta_data = @meta_datas.first
 end
 
