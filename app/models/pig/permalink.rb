@@ -54,12 +54,12 @@ module Pig
 
     private
     def create_inactive_permalink
-      return unless path_changed? || full_path_changed?
-      resource.permalinks.create(:active => false, :path => path_was, :full_path => full_path_was)
+      return unless saved_change_to_path? || saved_change_to_full_path?
+      resource.permalinks.create(:active => false, :path => path_before_last_save, :full_path => full_path_before_last_save)
     end
 
     def delete_duplicate_permalinks
-      Permalink.without(self).where(:path => path, :full_path => full_path, :active => false).delete_all
+      Permalink.with_out(self).where(:path => path, :full_path => full_path, :active => false).delete_all
     end
 
     def path_does_not_match_existing_route

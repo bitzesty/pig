@@ -38,10 +38,10 @@ module Pig
     scope :archived, -> { unscoped.where("archived_at IS NOT NULL").order("archived_at DESC") }
     scope :published, -> { where(:status => 'published').where('publish_at <= ? OR publish_at IS NULL', Date.today) }
     scope :expiring, -> { where('next_review < ?', Date.today) }
-    scope :without, (lambda do |ids_or_records|
-      array = [*ids_or_records].collect{|i| i.is_a?(Integer) ? i : i.try(:id)}.reject(&:nil?)
-      array.empty? ? scoped : where(["#{table_name}.id NOT IN (?)", array])
-    end)
+    # scope :without, (lambda do |ids_or_records|
+    #   array = [*ids_or_records].collect{|i| i.is_a?(Integer) ? i : i.try(:id)}.reject(&:nil?)
+    #   array.empty? ? scoped : where(["#{table_name}.id NOT IN (?)", array])
+    # end)
 
     def build_content_chunk_methods
       if content_type

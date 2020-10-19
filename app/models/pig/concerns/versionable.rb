@@ -9,7 +9,7 @@ module Pig
 
       included do
         has_paper_trail class_name: 'Pig::Version',
-                        if: proc { |t| t.status_was == 'published' }
+                        if: proc { |t| t.status_before_last_save == 'published' }
       end
 
       def live_version

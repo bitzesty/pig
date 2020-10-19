@@ -40,8 +40,8 @@ module Pig
       end
 
       def execute_transitions
-        execute_status_transition if status_changed?
-        execute_author_transition if author_id_changed?
+        execute_status_transition if saved_change_to_status?
+        execute_author_transition if saved_change_to_author_id?
       end
 
       def execute_status_transition
@@ -65,7 +65,7 @@ module Pig
           },
           expiring: {}
         }
-        event = transitions[status_was.to_sym][status.to_sym]
+        event = transitions[status_before_last_save.to_sym][status.to_sym]
         send(event) if event
       end
 

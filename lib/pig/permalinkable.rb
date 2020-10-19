@@ -12,7 +12,7 @@ module Pig::Permalinkable
       dependent: :destroy,
       autosave: true
 
-    validates :permalink, presence: true, unless: 'viewless?', on: :update
+    validates :permalink, presence: true, unless: :viewless?, on: :update
 
     before_validation :set_permalink, :set_permalink_full_path
     after_validation :set_permalink_errors
