@@ -13,7 +13,7 @@ module Pig
           filelink = ActionController::Base.helpers.asset_path('redactor_image_upload_error.png')
         end
         # Render as text, not json, to prevent response being wrapped in <pre> tag
-        render text: {filelink: filelink, filename: @redactor_upload.file.name}.to_json
+        render plain: {filelink: filelink, filename: @redactor_upload.file.name}.to_json
       end
 
       def index
